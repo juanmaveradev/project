@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+
+  </head>
+  <body>
+    <main>
+      <div id="containerHeaderProducts">
+        <section id="sectionCreateProduct">
+          <form>
+            <h1>Agregar Producto</h1>
+            <div>
+              <input type="text" placeholder="Nombre del Producto" class="largeInput inputStyle" id="prodName"/>
+            </div>
+            <div>
+              <textarea name="" id="prodDescription" cols="30" rows="5" placeholder="Descripcion" class="largeInput"></textarea>
+              <textarea name="" id="prodURL" cols="30" rows="5" placeholder="URL Imagen" class="largeInput"></textarea>
+            </div>
+            <div id="containerProductInfo">
+              <div id="containerBtnPriceStock">
+                  <input type="number" class="smallInput inputStyle" placeholder="Precio" id="prodPrice" />
+                  <input type="number" class="smallInput inputStyle"placeholder="Stock"id="prodStock" >
+
+              </div>
+              <div id="containerBtnAddProd">
+                <input
+                type="button"
+                value="Agregar"
+                id="btnAddProd"
+                style="padding: 7px; width: 100%"
+                class="inputBtnStyle"
+              />
+              </div>
+  
+            </div>
+            
+          </form>
+        </section>
+        <section id="sectionProductsTableEdit">
+          <h2>Modificar Producto</h2>
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Producto</th>
+                  <th>Stock</th>
+                  <th>En Oferta</th>
+                  <th>Estado</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="containerProductsTableEdit">
+    
+              </tbody>
+            </table>
+          </div>
+
+          
+        </section>
+      </div>
+        
+      
+      
+      <section id="containerProducts"></section>
+
+    </main>
+
+
+    <script src="js/System.js"></script>
+    <script src="js/Product.js"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,397 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(236, 236, 236);
+}
+
+.inputBtnStyle {
+  background-color: indigo;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border-radius: 5px;
+  color: white;
+  padding: 7px;
+}
+
+.inputStyle {
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+textarea {
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+
+
+.inputRegister {
+  padding: 6px;
+  border-radius: 4px;
+
+}
+
+#sectionRegister, #sectionLogin {
+  width: 400px;
+  margin: auto;
+}
+
+#formRegister > div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+#formRegister > div > div{
+  display: flex;
+  flex-direction: column;
+}
+
+#containerCardInfo {
+  display: flex;
+  justify-content: space-between;
+}
+
+#containerCard {
+  width: 70%;
+}
+
+#containerCvc {
+  width: 20%;
+}
+
+#btnRegistro, #btnLogin, .btnBuy {
+  width: 100%;
+  padding: 7px;
+}
+
+#sectionLogin > form > div > input {
+  padding: 7px;
+  border-radius: 4px;
+  width: 60%;
+} 
+
+#sectionLogin > form > div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+
+#sectionProducts {
+  display: flex;
+}
+
+
+
+.cardProduct {
+  width: 300px;
+  margin: 2rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px;
+  background-color: white;
+  
+}
+
+
+
+.containerImgProd {
+  width: 100%;
+  height: 300px;
+  
+}
+
+.containerImgProd > div {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+
+.containerImgProd > div > img  {
+  width: 100%;
+  max-height: 100%;
+  filter: brightness(1.1);
+  mix-blend-mode: multiply;
+
+}
+
+
+
+.cardProduct > h2  {
+  width: 100%;
+  padding: 1rem 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.cardProduct > p {
+  width: 100%;
+  margin: .5rem 0;
+  text-align: center;
+}
+
+#containerPrice {
+  margin: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#containerPrice > div > button{
+  width: 30px;
+  height: 30px;
+
+  margin: 5px;
+}
+
+
+#sectionBuyUser, #sectionBuyAdmin {
+  width: 60%;
+  margin: auto;
+}
+
+ table {
+  width: 60%;
+  border-collapse: collapse;
+}
+
+ th, td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  
+}
+
+tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+
+#sectionOffers {
+  display: flex;
+  justify-content: center;
+
+}
+
+#offerTitle{
+  text-align: center;
+}
+
+#sectionBuyAdmin > h2 {
+    margin: 3rem 0 1rem 0;
+}
+
+
+main > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+/* SECTION CREATE PRODUCT */
+
+
+#containerHeaderProducts {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+
+#sectionCreateProduct {
+  width: 500px;
+  margin: 3rem ;
+}
+
+#sectionProductsTableEdit  {
+  margin: 3rem 0;
+}
+
+#sectionProductsTableEdit > div {
+
+  height: 350px;
+  overflow-y: scroll;
+}
+
+#sectionProductsTableEdit > div > table{
+  width: 100%;
+  
+}
+
+#sectionProductsTableEdit > h2 {
+  margin-bottom: 1rem;
+
+}
+
+.btnState[value="Activar"] {
+  background-color: green;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border-radius: 5px;
+  color: white;
+  padding: 7px;
+}
+
+.btnState[value="Pausar"] {
+  background-color: red;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border-radius: 5px;
+  color: white;
+  padding: 7px;
+}
+
+
+
+#containerProductInfo {
+  display: flex;
+  justify-content: space-between;
+}
+
+#containerBtnAddProd {
+  width: 50%;
+}
+
+#containerBtnPriceStock {
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+}
+
+#containerBtnPriceStock > div {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-left: 2rem;
+}
+
+#containerBtnPriceStock > div > input {
+  height: 25px;
+  transform: scale(1.5); 
+  margin-left: 10px;
+}
+
+
+
+#prodName {
+  width: 100%;
+  padding: 7px;
+  margin: 1rem 0;
+}
+
+#prodURL {
+  margin: 1rem 0;
+}
+
+.smallInput {
+  width: 5rem;
+  padding: 7px;
+}
+
+.largeInput {
+  width: 100%;
+}
+
+#containerProductsTable > tr > td > img{
+  width: 5rem;
+}
+
+#containerProductsTableEdit > tr > td > img{
+  width: 5rem;
+}
+
+
+
+
+.cardEdit {
+  display: flex;
+  justify-content: space-between;
+  height: 300px;
+  width: 600px;
+}
+
+.containerHeaderEdit > img{
+  width: 100%;
+  height: 100%;
+}
+
+.offerStatus {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.containerAddStock {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.containerStates {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.containerStates > div{
+  display: flex;
+  align-items: center;
+
+}
+
+.containerBodyEdit > div > input {
+  padding: 5px;
+
+}
+
+.containerBodyEdit {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 40%;
+}
+
+.btnAddStock {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.containerAddStock > div > button {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.containerInfoAddStock {
+  display: flex;
+  justify-content: space-between;
+  height: 150px;
+}
+
+#containerProducts{
+  display: flex;
+ flex-wrap: wrap;
+ justify-content: center;
+}
