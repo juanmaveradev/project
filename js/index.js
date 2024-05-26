@@ -54,7 +54,7 @@ function listProducts() {
                   <span><b>0</b></span>
                   <button>+</button>
                 </div>
-                <span>${system.products[i].offer}</span>
+                ${system.products[i].offerStateMsg()}
               </div>
               <input type="button" value="Comprar" class="btnBuy inputBtnStyle" />
             </div>
@@ -86,8 +86,7 @@ function listProductsTable() {
                 <td><input type="button"value="${system.products[i].prodStateBtn()}" class="btnState"  data-index="${i}"></td>
       </tr>
       `
-  
-        // Agregar event listener a cada botón de estado
+
           document.querySelectorAll(".btnState").forEach(function(button){
           button.addEventListener("click", function() {
           changeProdState(button.dataset.index);
@@ -102,10 +101,9 @@ function listProductsTable() {
 }
 
 function changeProdState(index) {
-  // Cambiar el estado del producto
+
   system.products[index].state = !system.products[index].state;
 
-  // Actualizar el texto del botón y el estado visual
   let btnState = document.querySelectorAll(".btnState")[index];
   if (system.products[index].state) {
       btnState.value = "Pausar";
@@ -113,7 +111,6 @@ function changeProdState(index) {
       btnState.value = "Activar";
   }
 
-  // Actualizar la visualización de la tabla de productos
   listProductsTable();
   listProducts();
   console.log(system.products[index])

@@ -16,6 +16,15 @@ class Product {
     }
   }
 
+  offerStateMsg() {
+    if (this.offer) {
+      return `<span class="offerTrue"> EN OFERTA </span>`
+    } return ''
+
+
+  }
+
+
   prodState() {
     if (this.state) {
       return "Activo"
