@@ -1,12 +1,9 @@
 let system = new System();
 
-
-
 listProducts();
 listProductsTable()
 
 document.querySelector("#btnAddProd").addEventListener("click", addProduct);
-
 
 function addProduct() {
   
@@ -18,9 +15,51 @@ function addProduct() {
   let stock = Number(document.querySelector("#prodStock").value);
   let offer = false;
   let state = true;
+  let validation = true;
 
-  system.addProduct(id,title,description,imgUrl,price,stock,offer,state);
+
+  let msgError = document.querySelector(".errorMsg");
+  msgError.innerHTML = ''
+
+  if (title === '') {
+    msgError.innerHTML += "<p>El título no debe estar vacío<br></p>";
+    validation = false;
+}
+if (description === '') {
+    msgError.innerHTML += "<p>La descripción no debe estar vacía<br></p>";
+    validation = false;
+}
+if (imgUrl === '') {
+    msgError.innerHTML += "<p>La URL no debe estar vacía<br></p>";
+    validation = false;
+}
+if (price === '') {
+    msgError.innerHTML += "<p>El precio no debe estar vacío<br></p>";
+    validation = false;
+} else if (isNaN(price)) {
+    msgError.innerHTML += "<p>El precio debe ser un número<br></p>";
+    validation = false;
+} else if (Number(price) < 1) {
+    msgError.innerHTML += "<p>El precio debe ser mayor a 0<br></p>";
+    validation = false;
+}
+if (stock === '') {
+    msgError.innerHTML += "<p>El stock no debe estar vacío<br></p>";
+    validation = false;
+} else if (isNaN(stock)) {
+    msgError.innerHTML += "<p>El stock debe ser un número<br></p>";
+    validation = false;
+} else if (Number(stock) < 1) {
+    msgError.innerHTML += "<p>El stock debe ser mayor a 0<br></p>";
+    validation = false;
+}
+
+  if (validation) {
+    system.addProduct(id,title,description,imgUrl,price,stock,offer,state);
+  }
+  
   console.log(system.products)
+  console.log(validation)
 
   listProducts();
   listProductsTable()
@@ -71,9 +110,6 @@ function listProductsTable() {
   let listProductsTableEdit = document.querySelector("#containerProductsTableEdit");
   listProductsTableEdit.innerHTML = '';
 
-  
-
-
   for (let i = 0; i < system.products.length; i++){
    
       listProductsTableEdit.innerHTML += `
@@ -92,12 +128,7 @@ function listProductsTable() {
           changeProdState(button.dataset.index);
       });
     });
-    
-
   }
-
-
-
 }
 
 function changeProdState(index) {
@@ -115,5 +146,6 @@ function changeProdState(index) {
   listProducts();
   console.log(system.products[index])
 }
+
 
 
