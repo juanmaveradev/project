@@ -2,6 +2,7 @@ class System {
   constructor() {
     this.products = [];
     this.users = [];
+    this.userLogged;
     this.preloadProducts();
     this.preloadUsers();
   }
@@ -29,13 +30,31 @@ class System {
     this.users.push(admin1,admin2,admin3,admin4,admin5, user1,user2,user3,user4,user5)
 }
 
-
-
   addProduct(id,title,description,imgUrl,price,stock,offer,state) {
     let newProduct = new Product(id,title,description,imgUrl,price,stock,offer,state)
     this.products.push(newProduct)
   }
 
+
+  login(user,password){
+    let i = 0;
+    let userFinded = false;
+
+    while(i < this.products.length && !userFinded){
+
+        let prods = this.products[i];
+
+        if(user.name.toLowerCase() === user && user.password === password){
+          userFinded = true;
+            this.userLogged = prods;
+        }
+
+        i++;
+    }
+
+    return userFinded;
+
+}
   
 
 }

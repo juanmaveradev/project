@@ -1,7 +1,8 @@
 let system = new System();
 
 listProducts();
-listProductsTable()
+listProductsTable();
+
 
 document.querySelector("#btnAddProd").addEventListener("click", addProduct);
 
@@ -147,5 +148,26 @@ function changeProdState(index) {
   console.log(system.products[index])
 }
 
+
+
+
+function login(){
+  let user = document.querySelector("#userNameLogin").value.toLowerCase();
+  let password = document.querySelector("#passwordLogin").value;
+
+  let userExist = system.login(user,password);
+
+  if(userExist){
+    visibilidadPorClase("privado","block");
+    document.querySelector("#sectionLogin").style.display = "none"
+    document.querySelector("#userNameLogin").value ="";
+    document.querySelector("#passwordLogin").innerHTML = "";
+  }else{
+    document.querySelector("#pLogin").innerHTML = "Error al iniciar sesion";
+  }
+  document.querySelector("#passwordLogin").value ="";
+  
+
+}
 
 
