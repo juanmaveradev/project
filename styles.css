@@ -28,6 +28,9 @@ footer {
   color: white;
   letter-spacing: 3px;
   font-weight: bolder;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
 }
 
 
@@ -36,16 +39,20 @@ nav > ul > li {
   display: inline;
 }
 
-li > a {
+li > a, li > span {
   padding: .5rem 3rem;
   text-transform: uppercase;
   color: white;
+  font-weight: bolder;
 }
+
+
 
 nav > ul > li > a:hover{
   background-color: white;
   color: indigo;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 
@@ -87,23 +94,26 @@ textarea {
 
 }
 
-#sectionRegister, #sectionLogin {
-
+#sectionRegister, .sectionLogin {
   width: 500px;
-  margin: 3rem auto;
+  margin: 15rem auto;
   background-color: rgb(202, 202, 202);
   padding: 2rem;
   border-radius: 1rem;
 }
 
-#formRegister > div {
+
+
+#containerRegister > div {
   width: 100%;
   display: flex;
   justify-content: space-between;
   margin: 1rem 0;
 }
 
-#formRegister > div > div{
+
+
+#containerRegister > div > div{
   display: flex;
   flex-direction: column;
 }
@@ -126,19 +136,23 @@ textarea {
   padding: 7px;
 }
 
-#sectionLogin > h1{
+.sectionLogin > h2{
   text-align: center;
 }
 
+.sectionLogin > p {
+  text-align: center;
+  padding-top: 1.2rem;
+}
 
 
-#sectionLogin  > div > input {
+.sectionLogin  > div > input {
   padding: 7px;
   border-radius: 4px;
   width: 60%;
 } 
 
-#sectionLogin  > div{
+.sectionLogin  > div{
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -146,7 +160,7 @@ textarea {
 }
 
 
-#sectionProducts {
+.sectionProducts {
   display: flex;
 }
 
@@ -279,13 +293,13 @@ main > div {
 /* SECTION CREATE PRODUCT */
 
 
-#containerHeaderProducts {
+.containerHeaderProducts {
   display: flex;
   justify-content: space-evenly;
 }
 
 
-#sectionCreateProduct {
+.sectionCreateProduct {
   width: 500px;
   margin: 3rem ;
 }

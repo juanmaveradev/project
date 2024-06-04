@@ -10,17 +10,21 @@
 
 <body>
   <header>
-    <nav id="private">
+    <nav class="private">
       <ul>
-        <li id="btnSecCreateProduct" class="btnSection" data-secRef="sectionCreateProduct">
+        <li>
+          <span id="userName"></span>
+        </li>
+        <li id="btnSecCreateProduct" class="btnSection " data-secRef="sectionCreateProduct">
           <a>Agregar Productos</a>
         </li>
-        <li id="btnSecEditProduct" class="btnSection" data-secRef="sectionProductsTableEdit">
+        <li id="btnSecEditProduct" class="btnSection " data-secRef="sectionProductsTableEdit">
           <a>Modificar Productos</a>
         </li>
-        <li id="btnSecLogOut" class="btnSection" data-secRef="sectionLogOut">
+        <li id="btnLogOut">
           <a>Cerrar Sesion</a>
         </li>
+ 
       </ul>
     </nav>
   </header>
@@ -28,9 +32,9 @@
   <main>
 
 
-    <section id="sectionRegister" style="margin: 2rem auto;">
-      <h1>Registrarse</h1>
-      <form id="formRegister">
+    <section class="sectionRegister" style="margin: 2rem auto;">
+      <h1>REGISTRARSE</h1>
+      <div id="containerRegister">
         <div>
           <input type="text" id="name" placeholder="Nombre" class="inputRegister" />
           <input type="text" id="lastName" placeholder="Apellido" class="inputRegister" />
@@ -50,11 +54,12 @@
           </div>
         </div>
         <input type="submit" value="Registrarse" id="btnRegistro" class="inputBtnStyle">
-      </form>
+      </div>
+
     </section>
 
-    <section id="sectionLogin">
-      <h1>INICIO SESION</h1>
+    <section class="sectionLogin">
+      <h2>INICIO SESION</h2>
       <div>
         <label for="userNameLogin">Nombre de Usuario:</label>
         <input type="text" id="userNameLogin" class="inputStyle">
@@ -64,17 +69,13 @@
         <input type="password" id="passwordLogin" class="inputStyle">
       </div>
       <input type="button" value="Ingresar" id="btnLogin" class="inputBtnStyle">
-      <p id="pLogin"></p>
-    </section>
-
-
-    <section class="private">
+      
+      <p><a href="" id="btnShowRegister">No tienes una cuenta? Registrate!</a></p>
 
     </section>
 
-
-    <div id="containerHeaderProducts">
-      <section id="sectionCreateProduct">
+    <div class="containerHeaderProducts privateAdmin">
+      <section class="sectionCreateProduct">
         <span class="errorMsg"></span>
         <h1>Agregar Producto</h1>
         <div>
@@ -124,7 +125,7 @@
 
 
 
-    <section id="containerProducts"></section>
+    <section class="containerProducts"></section>
 
   </main>
 

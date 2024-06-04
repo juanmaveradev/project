@@ -2,7 +2,7 @@ class System {
   constructor() {
     this.products = [];
     this.users = [];
-    this.userLogged;
+    this.userLogged = null;
     this.preloadProducts();
     this.preloadUsers();
   }
@@ -26,7 +26,7 @@ class System {
     let user2 = new User(7, 2, 'Pablito', 'elmejor123', 'Pablo', 'Casas', '5417-4321-7543-9625', 953)
     let user3 = new User(8, 2, 'Alfredito', 'alfred34', 'Alfredo', 'Perez', '5432-8764-5435-2135', 548)
     let user4 = new User(9, 2, 'Batman', 'fckJoker', 'Bruce', 'Wayne', '6809-1324-4352-7656', 437)
-    let user5 = new User(10, 2, 'PepeGamer', 'pepitopro', 'Pepe', 'Ramirez', '4322-5434-4531-7658',953)
+    let user5 = new User(10, 2, 'ej', '123', 'Pepe', 'Ramirez', '4322-5434-4531-7658',953)
     this.users.push(admin1,admin2,admin3,admin4,admin5, user1,user2,user3,user4,user5)
 }
 
@@ -35,26 +35,26 @@ class System {
     this.products.push(newProduct)
   }
 
+  login(user,password) {
 
-  login(user,password){
     let i = 0;
     let userFinded = false;
+    
+    while (i < this.users.length && !userFinded) {
 
-    while(i < this.products.length && !userFinded){
+        let userLogin = this.users[i];
 
-        let prods = this.products[i];
-
-        if(user.name.toLowerCase() === user && user.password === password){
+        if ( userLogin.username.toLowerCase() === user && userLogin.password === password){
           userFinded = true;
-            this.userLogged = prods;
-        }
+          this.userLogged = userLogin;
+      }
 
-        i++;
+      i++
     }
 
     return userFinded;
-
-}
+  }
+  
   
 
 }
