@@ -1,0 +1,4 @@
+Guardar imagenes
+Cambiar stock
+Guardar compras
+Guardar ganancias

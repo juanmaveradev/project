@@ -4,13 +4,30 @@
   box-sizing: border-box;
 }
 
-body {
-  background-color: rgb(236, 236, 236);
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+.open-sans-font{
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
 }
 
 
+
+
+body {
+  background-color: rgb(236, 236, 236);
+
+}
+
+
+
 header {
-  height: 4rem;
+  height: 5rem;
   background-color: indigo;
   margin-bottom: 3rem;
   display: flex;
@@ -19,7 +36,7 @@ header {
 }
 
 footer {
-  height: 4rem;
+  height: 6.25rem;
   background-color: indigo;
   margin-top: 3rem;
   display: flex;
@@ -28,27 +45,42 @@ footer {
   color: white;
   letter-spacing: 3px;
   font-weight: bolder;
-  position: absolute;
-  width: 100%;
-  bottom: 0;
+  
+  font-size: 1.3rem;
 }
 
 
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
 
 nav > ul > li {
   display: inline;
 }
 
-li > a, li > span {
-  padding: .5rem 3rem;
-  text-transform: uppercase;
+nav > ul  {
+  display: flex;
+  align-items: center;
+  margin: 0 1rem;
+}
+
+li > a, #welcomeUser  {
+  padding: .5rem 2rem;
+  font-size: 1.2rem;
   color: white;
   font-weight: bolder;
 }
 
+#welcomeUser > span{
+  color: rgb(5, 231, 5);
+  text-transform: uppercase;
+  font-weight: bolder;
+}
 
 
-nav > ul > li > a:hover{
+nav > ul  > li > a:hover{
   background-color: white;
   color: indigo;
   border-radius: 10px;
@@ -66,6 +98,7 @@ nav > ul > li > a:hover{
   border-radius: 5px;
   color: white;
   padding: 7px;
+  
 }
 
 .inputStyle {
@@ -97,9 +130,10 @@ textarea {
 #sectionRegister, .sectionLogin {
   width: 500px;
   margin: 15rem auto;
-  background-color: rgb(202, 202, 202);
+  background-color: rgb(255, 255, 255);
   padding: 2rem;
   border-radius: 1rem;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
 }
 
 
@@ -138,6 +172,9 @@ textarea {
 
 .sectionLogin > h2{
   text-align: center;
+  font-size: 1.8rem;
+  letter-spacing: 3px;
+  color: indigo;
 }
 
 .sectionLogin > p {
@@ -150,7 +187,9 @@ textarea {
   padding: 7px;
   border-radius: 4px;
   width: 60%;
+  background-color: rgb(231, 228, 228);
 } 
+
 
 .sectionLogin  > div{
   display: flex;
@@ -251,21 +290,7 @@ textarea {
   margin: auto;
 }
 
- table {
-  width: 60%;
-  border-collapse: collapse;
-}
 
- th, td {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-  
-}
-
-tr:nth-child(even) {
-  background-color: #ffffff;
-}
 
 
 #sectionOffers {
@@ -293,38 +318,51 @@ main > div {
 /* SECTION CREATE PRODUCT */
 
 
-.containerHeaderProducts {
-  display: flex;
-  justify-content: space-evenly;
-}
-
 
 .sectionCreateProduct {
   width: 500px;
-  margin: 3rem ;
+  margin: 3rem auto;
 }
 
-#sectionProductsTableEdit  {
-  margin: 3rem 0;
+.sectionProductsTableEdit  {
+  width: 70%;
+  margin: 3rem auto;
+
 }
 
-#sectionProductsTableEdit > div {
+
+
+
+.sectionProductsTableEdit > div {
 
   height: 350px;
   overflow-y: scroll;
 }
 
-#sectionProductsTableEdit > div > table{
+.sectionProductsTableEdit > div > table{
   width: 100%;
+  border-collapse: collapse;
   
 }
 
-#sectionProductsTableEdit > h2 {
-  margin-bottom: 1rem;
 
+th, td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  font-size: 1.3rem;
 }
 
-.btnState[value="Activar"] {
+tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+.sectionProductsTableEdit > h2 {
+  margin-bottom: 3rem;
+  font-size: 2rem;
+}
+
+.Activo{
   background-color: green;
   font-size: 14px;
   border: none;
@@ -332,10 +370,10 @@ main > div {
   transition: all 0.3s ease-in-out;
   border-radius: 5px;
   color: white;
-  padding: 7px;
+  padding: 7px 2.4rem;
 }
 
-.btnState[value="Pausar"] {
+.Pausado {
   background-color: red;
   font-size: 14px;
   border: none;
@@ -343,7 +381,31 @@ main > div {
   transition: all 0.3s ease-in-out;
   border-radius: 5px;
   color: white;
-  padding: 7px;
+  padding: 7px 2rem;
+}
+
+.SI {
+  background-color: green;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border-radius: 5px;
+  color: white;
+  padding: 7px 2.2rem;
+  
+}
+
+.NO {
+  background-color: red;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border-radius: 5px;
+  color: white;
+  padding: 7px 2rem;
+  width: 2rem;
 }
 
 

@@ -1,5 +1,5 @@
 class Product {
-  constructor(id, name, description, imgUrl, price, stock, offer, state) {
+  constructor(id, name, description, imgUrl, price, stock, offer, state, selled) {
     this.id = id;
     this.name = name;
     this.description = description;
@@ -8,19 +8,25 @@ class Product {
     this.stock = stock;
     this.offer = offer;
     this.state = state;
+    this.selled = selled;
   }
   
   offerState() {
     if (this.offer) {
-      return "checked"
-    }
+      return "SI" 
+    }return "NO"
+  }
+
+  offerStateBtn() {
+    if (this.offer) {
+      return "Cambiar"
+    } return "Cambiar"
   }
 
   offerStateMsg() {
     if (this.offer) {
       return `<span class="offerTrue"> EN OFERTA </span>`
     } return ''
-
 
   }
 
