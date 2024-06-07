@@ -1,16 +1,13 @@
 let system = new System();
 
-
-
-
 listProducts();
 listOfferProducts();
 listProductsTable();
+listBuysTable();
 showByClass("privateAdmin", "none")
 showByClass("privateUser", "none")
 hideToAdmin();
 hideToUser();
-
 
 
 document.querySelector("#btnAddProd").addEventListener("click", addProduct);
@@ -27,15 +24,13 @@ function hideToUser() {
   document.querySelector(".sectionRegister").style.display = "none"
   document.querySelector(".sectionProductsTableEdit").style.display = "none"
   document.querySelector(".sectionGains").style.display = "none"
-
 }
 
 function hideToAdmin() {
-  document.querySelector(".containerProducts").style.display = "none"
-
+  document.querySelector(".sectionProducts").style.display = "none"
+  document.querySelector(".sectionOffer").style.display = "none"
+  document.querySelector(".sectionBuys").style.display = "none"
 }
-
-
 
 
 function showSection() {
@@ -47,10 +42,7 @@ function showSection() {
   let sectionToShow = document.querySelector(`.${classSec}`);
 
   sectionToShow.style.display = "block";
-
-
 }
-
 
 function showByClass(sctClass, display) {
   let sections = document.querySelectorAll(`.${sctClass}`)
@@ -58,11 +50,6 @@ function showByClass(sctClass, display) {
     sect.style.display = display;
   }
 }
-
-
-
-
-
 
 function addProduct() {
   let id = system.products.length + 1;
@@ -121,6 +108,7 @@ function addProduct() {
       stock,
       offer,
       state
+
     );
     Swal.fire({
       icon: 'success',
@@ -139,28 +127,30 @@ function listProducts() {
   let containerProd = document.querySelector(".containerProducts");
   containerProd.innerHTML = "";
 
-  for (let i = 0; i < system.products.length; i++) {
-    if (system.products[i].state == true) {
+  let availableProds = system.availableProds();
+
+  for (let i = 0; i < availableProds.length; i++) {
+    if (availableProds[i].state == true) {
       containerProd.innerHTML += `
-        <div class="cardProduct" data-product-id="${system.products[i].id}">
-          <h2>${system.products[i].name}</h2>
+        <div class="cardProduct" data-product-id="${availableProds[i].id}">
+          <h2>${availableProds[i].name}</h2>
           <div>
             <div class="containerImgProd">
               <div> 
-                <img src="${system.products[i].imgUrl}" alt="${system.products[i].name}">            
+                <img src="${availableProds[i].imgUrl}" alt="${availableProds[i].name}">            
               </div>
             </div>
           </div>
           <div>
-            <p>${system.products[i].description}</p>
+            <p>${availableProds[i].description}</p>
             <div id="containerPrice">
-              <span>${system.products[i].price} USD</span>
+              <span>${availableProds[i].price} USD</span>
               <div>
                 <button class="decrement">-</button>
                 <span class="counter"><b>0</b></span>
                 <button class="increment">+</button>
               </div>
-              ${system.products[i].offerStateMsg()}
+              ${availableProds[i].offerStateMsg()}
             </div>
             <input type="button" value="Comprar" class="btnBuy inputBtnStyle" />
           </div>
@@ -175,7 +165,6 @@ function listProducts() {
       const productCard = button.closest(".cardProduct");
       const productId = productCard.dataset.productId;
       const amount = parseInt(productCard.querySelector(".counter b").textContent);
-      console.log("ID del producto a comprar:", productId);
 
       system.buyProduct(productId, amount);
       listProducts(); 
@@ -188,36 +177,50 @@ function listOfferProducts() {
   let containerProd = document.querySelector(".containerOfferProducts");
   containerProd.innerHTML = "";
 
-  for (let i = 0; i < system.products.length; i++) {
-    if (system.products[i].state == true && system.products[i].offer == true) {
+  let availableProds = system.availableProds();
+
+
+  for (let i = 0; i < availableProds.length; i++) {
+    if (availableProds[i].state && availableProds[i].offer) {
       containerProd.innerHTML += `
-        <div class="cardProduct">
-          <h2>${system.products[i].name}</h2>
+        <div class="cardProduct" data-product-id="${availableProds[i].id}">
+          <h2>${availableProds[i].name}</h2>
           <div>
             <div class="containerImgProd">
               <div> 
-                <img src="${system.products[i].imgUrl}" alt="${system.products[i].name}">            
+                <img src="${availableProds[i].imgUrl}" alt="${availableProds[i].name}">            
               </div>
             </div>
           </div>
           <div>
-            <p>${system.products[i].description}</p>
+            <p>${availableProds[i].description}</p>
             <div id="containerPrice">
-              <span>${system.products[i].price} USD</span>
+              <span>${availableProds[i].price} USD</span>
               <div>
                 <button class="decrement">-</button>
                 <span class="counter"><b>0</b></span>
                 <button class="increment">+</button>
               </div>
-              ${system.products[i].offerStateMsg()}
+              ${availableProds[i].offerStateMsg()}
             </div>
-            <input type="button" value="Comprar" class="btnBuy inputBtnStyle" data-idProd =${system.products[i].id}/>
+            <input type="button" value="Comprar" class="btnBuy inputBtnStyle" data-idProd="${availableProds[i].id}" />
           </div>
         </div>
       `;
     }
   }
   buyCounter();
+
+
+  document.querySelectorAll(".btnBuy").forEach(button => {
+    button.addEventListener("click", function() {
+      const productCard = button.closest(".cardProduct");
+      const productId = productCard.getAttribute("data-product-id");
+      const amount = parseInt(productCard.querySelector(".counter b").textContent);
+
+      buyProd(productId, amount);
+    });
+  });
 }
 
 function buyCounter() {
@@ -225,9 +228,11 @@ function buyCounter() {
   let incrementButtons = document.querySelectorAll('.increment');
   let counters = document.querySelectorAll('.counter b');
 
+
+
   decrementButtons.forEach((button, i) => {
     button.onclick = () => {
-      let counterProds = parseInt(counters[i].textContent);
+      let counterProds = Number(counters[i].textContent);
       if (counterProds > 0) {
         counterProds--;
         counters[i].textContent = counterProds;
@@ -237,7 +242,7 @@ function buyCounter() {
 
   incrementButtons.forEach((button, i) => {
     button.onclick = () => {
-      let counterProds = parseInt(counters[i].textContent);
+      let counterProds = Number(counters[i].textContent);
       counterProds++;
       counters[i].textContent = counterProds;
     };
@@ -245,8 +250,28 @@ function buyCounter() {
 }
 
 
-
-
+function buyProd(id, amount) {
+  let seCompro = system.buyProd(id, amount);
+  if (seCompro) {
+    Swal.fire({
+      icon: 'success',
+      title: "Compra realizada",
+      showConfirmButton: false,
+      timer: 1500 
+    });
+  } else {
+    Swal.fire({
+      icon: 'error',
+      title: "Error al comprar",
+      showConfirmButton: false,
+      timer: 1500 
+    })
+  }
+  listProducts();
+  listOfferProducts();
+  listProductsTable();
+  listBuysTable()
+}
 
 
 function listProductsTable() {
@@ -282,6 +307,23 @@ function listProductsTable() {
   }
 }
 
+function listBuysTable() {
+  let listBuysTable = document.querySelector("#containerBuysTable");
+  listBuysTable.innerHTML = "";
+
+  for (let i = 0; i < system.buys.length; i++) {
+    listBuysTable.innerHTML += `
+      <tr>
+        <td>${system.buys[i].product}</td>
+        <td>${system.buys[i].amount}</td>
+        <td>${system.buys[i].totalCost}</td>
+        <td><b class="${system.buys[i].stateBuys}">${system.buys[i].stateBuys}</b></td>
+      </tr>
+    `;
+  }
+
+
+}
 
 
 
@@ -321,33 +363,6 @@ function changeProdOffer(i) {
 
 
 
-function sellProd(id) {
-  let prodIndex = system.products.findIndex(prod => prod.id == id);
-  let prod = system.products[prodIndex];
-  if (prod) {
-    let quantity = document.querySelector(`#counter${id}`).textContent;
-    quantity = parseInt(quantity);
-    if (quantity > 0 && quantity <= prod.stock) {
-      system.sellProduct(id, quantity);
-      listProducts();
-      listOfferProducts();
-      listProductsTable();
-      alert("COMPRA")
-    } else {
-      alert("Cantidad inválida o insuficiente en stock.");
-    }
-  }
-}
-
-document.querySelectorAll(".btnBuy").forEach(function (button) {
-  button.addEventListener("click", function () {
-    let prodId = parseInt(button.dataset.idProd);
-    sellProd(prodId);
-  });
-});
-
-
-
 
 function login() {
 
@@ -362,9 +377,9 @@ function login() {
 
     const Toast = Swal.mixin({
       toast: true,
-      position: "top",
+      position: "top-right",
       showConfirmButton: false,
-      timer: 2500,
+      timer: 2000,
       timerProgressBar: true,
       didOpen: (toast) => {
         toast.onmouseenter = Swal.stopTimer;
@@ -410,3 +425,12 @@ function logout() {
 }
 
 
+document.addEventListener("scroll", function() {
+  let footer = document.getElementById("footer");
+
+  if (window.scrollY > 100) { // Mostrar el footer después de 100px de desplazamiento
+    footer.classList.add("show");
+  } else {
+    footer.classList.remove("show");
+  }
+});

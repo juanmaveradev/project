@@ -23,13 +23,13 @@
           <li id="btnSecGains" class="btnSection privateAdmin" data-secRef="sectionGains">
             <a>Ver Ganancias</a>
           </li>
-          <li id="btnSecProducts" class="btnSection privateUser" data-secRef="containerProducts">
+          <li id="btnSecProducts" class="btnSection privateUser" data-secRef="sectionProducts">
             <a>Productos</a>
           </li>
-          <li id="btnSecOfferProducts" class="btnSection privateUser" data-secRef="containerOfferProducts">
+          <li id="btnSecOfferProducts" class="btnSection privateUser" data-secRef="sectionOffer">
             <a>Ofertas</a>
           </li>
-          <li id="" class="btnSection privateUser" data-secRef="">
+          <li id="btnSecBuys" class="btnSection privateUser" data-secRef="sectionBuys">
             <a>Mis Compras</a>
           </li>
 
@@ -147,12 +147,32 @@
 
 
 
-      <section class="containerProducts privateUser"></section>
-      <section class="containerOfferProducts privateUser">
-        <h2>Ofertas</h2>
+      <section class="sectionProducts privateUser">
+        
+        <div>
+          <h2>Productos</h2>
+          <div class="containerProducts">
+
+          </div>
+        </div>
+        
       </section>
-      <section class="privateUser">
-        <h2>Mis Compras</h2>
+      <section class="sectionOffer privateUser">
+        <div>
+          <h2>Ofertas</h2>
+        <div class="containerOfferProducts">
+
+        </div>
+        </div>    
+      </section>
+      <section class="sectionBuys privateUser">
+        <div>
+          <h2>Mis Compras</h2>
+          <div>
+            <input type="button" value="Aprobadas" class="btnConf">
+            <input type="button" value="Pendientes" class="btnPend">
+            <input type="button" value="Rechazadas" class="btnDeny">
+          </div>
         <table>
           <thead>
             <tr>
@@ -166,6 +186,7 @@
 
           </tbody>
         </table>
+        </div>  
       </section>
     </main>
 
