@@ -159,17 +159,6 @@ function listProducts() {
     }
   }
   buyCounter();
-
-  document.querySelectorAll(".btnBuy").forEach(button => {
-    button.addEventListener("click", function() {
-      const productCard = button.closest(".cardProduct");
-      const productId = productCard.dataset.productId;
-      const amount = parseInt(productCard.querySelector(".counter b").textContent);
-
-      system.buyProduct(productId, amount);
-      listProducts(); 
-    });
-  });
 }
 
 
@@ -257,14 +246,14 @@ function buyProd(id, amount) {
       icon: 'success',
       title: "Compra realizada",
       showConfirmButton: false,
-      timer: 1500 
+      timer: 1000 
     });
   } else {
     Swal.fire({
       icon: 'error',
       title: "Error al comprar",
       showConfirmButton: false,
-      timer: 1500 
+      timer: 1000 
     })
   }
   listProducts();
@@ -309,18 +298,76 @@ function listProductsTable() {
 
 function listBuysTable() {
   let listBuysTable = document.querySelector("#containerBuysTable");
+  let containerHeaderBuysTable = document.querySelector("#containerHeaderBuysTable");
+  containerHeaderBuysTable.innerHTML = "";
   listBuysTable.innerHTML = "";
 
-  for (let i = 0; i < system.buys.length; i++) {
-    listBuysTable.innerHTML += `
-      <tr>
-        <td>${system.buys[i].product}</td>
-        <td>${system.buys[i].amount}</td>
-        <td>${system.buys[i].totalCost}</td>
-        <td><b class="${system.buys[i].stateBuys}">${system.buys[i].stateBuys}</b></td>
-      </tr>
-    `;
+
+  if (system.userLogged !== null) {
+
+    if (system.userLogged.type === 1) {
+
+        for (let i = 0; i < system.buys.length; i++) {
+          listBuysTable.innerHTML += `
+            <tr>
+              <td>${system.buys[i].buyer}</td>
+              <td>${system.buys[i].product}</td>
+              <td>${system.buys[i].amount}</td>
+              <td>${system.buys[i].totalCost}</td>
+              <td><b class="${system.buys[i].stateBuys}">${system.buys[i].stateBuys}</b></td>
+            </tr>
+          `;
+          containerHeaderBuysTable.innerHTML = `
+          <tr> 
+              <th>Usuario</th>   
+              <th>Producto</th>
+              <th>Cantidad</th>
+              <th>Monto Total</th>
+              <th>Estado</th>       
+          </tr>
+                  
+          `
+        
+      }
+     
+    } else if (system.userLogged.type === 2) {
+
+      let i = 0;
+
+      while(i < system.buys.length ) {    
+
+        if(system.userLogged.username === system.buys[i].buyer) {
+
+          listBuysTable.innerHTML += `
+            <tr>
+              <td>${system.buys[i].product}</td>
+              <td>${system.buys[i].amount}</td>
+              <td>${system.buys[i].totalCost}</td>
+              <td><b class="${system.buys[i].stateBuys}">${system.buys[i].stateBuys}</b></td>
+            </tr>
+          `;
+          containerHeaderBuysTable.innerHTML = `
+            <tr> 
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Monto Total</th>
+                <th>Estado</th>       
+            </tr>
+                 
+          `
+        }
+
+        
+        i++;
+      }
+
+      }
+
+      
+    
   }
+
+ 
 
 
 }
@@ -407,6 +454,7 @@ function login() {
   listProducts();
   listProductsTable();
   listOfferProducts();
+  listBuysTable();
 }
 
 
@@ -424,13 +472,3 @@ function logout() {
 
 }
 
-
-document.addEventListener("scroll", function() {
-  let footer = document.getElementById("footer");
-
-  if (window.scrollY > 100) { // Mostrar el footer después de 100px de desplazamiento
-    footer.classList.add("show");
-  } else {
-    footer.classList.remove("show");
-  }
-});
