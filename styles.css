@@ -17,8 +17,6 @@
 }
 
 
-
-
 body {
   background-color: rgb(236, 236, 236);
 
@@ -603,4 +601,17 @@ tr:nth-child(even) {
 
 .sectionBuys > div > div > input.btnDeny {
   background-color: red;
+}
+
+.btnAcceptBuy, .btnDenyBuy {
+  font-size: 1.2rem;
+  background-color: green;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  border-color: transparent;
+  font-weight: bolder;
+  text-align: right;
+  cursor: pointer;
+  margin: 0 5px;
 }

@@ -8,7 +8,6 @@ class Buys {
         this.totalCost = totalCost;
     }
 
-    
 
 
 

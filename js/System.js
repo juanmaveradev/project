@@ -6,9 +6,17 @@ class System {
     this.userLogged = null;
     this.preloadProducts();
     this.preloadUsers();
+    this.preloadBuys();
   }
 
-
+  preloadBuys() {
+    let buy1 = new Buys(1, this.users[6], this.products[4], 2, "Aprobada", 542)
+    let buy2 = new Buys(2, this.users[8], this.products[6], 5, "Pendiente", 235)
+    let buy3 = new Buys(3, this.users[7], this.products[2], 3, "Pendiente", 168)
+    let buy4 = new Buys(4, this.users[6], this.products[1], 1, "Rechazada", 65)
+    let buy5 = new Buys(5, this.users[9], this.products[8], 6, "Pendiente", 325)
+    this.buys.push(buy1,buy2,buy3,buy4,buy5)
+  }
 
   preloadProducts() {
     let cletoGloves14oz = new Product(1, "Guantes de boxeo - Cleto Reyes 14oz", "Guantes de boxeo con diseño anatómico: Los guantes de boxeo de alta resistencia CLETO REYES están hechos a mano en México con piel de vaca, diseñados anatómicamente para un ajuste perfecto.", "https://m.media-amazon.com/images/I/81K2UPztsdL._AC_SX679_.jpg", 257, 13, true, true);
@@ -25,16 +33,16 @@ class System {
   }
 
   preloadUsers() {
-    let admin1 = new User(1, 1, "root", "root", '', '', '', '')
-    let admin2 = new User(2, 1, "JuanmaVera", "Juanma123", '', '', '', '')
-    let admin3 = new User(3, 1, "x", "x", '', '', '', '')
-    let admin4 = new User(4, 1, "MariaMar", "papaymama", '', '', '', '')
-    let admin5 = new User(5, 1, "ValenIda", "Ida43", '', '', '', '')
-    let user1 = new User(6, 2, "MahiaJaz", "milocopitoluna", 'Mahia', 'Casaravilla', '4322-4354-4532-7313', 226)
-    let user2 = new User(7, 2, 'Pablito', 'elmejor123', 'Pablo', 'Casas', '5417-4321-7543-9625', 953)
-    let user3 = new User(8, 2, 'Alfredito', 'alfred34', 'Alfredo', 'Perez', '5432-8764-5435-2135', 548)
-    let user4 = new User(9, 2, 'Batman', 'fckJoker', 'Bruce', 'Wayne', '6809-1324-4352-7656', 437)
-    let user5 = new User(10, 2, 'ej', '123', 'Pepe', 'Ramirez', '4322-5434-4531-7658', 953)
+    let admin1 = new User(1, 1, "root", "root", '', '', '', '', 3000)
+    let admin2 = new User(2, 1, "JuanmaVera", "Juanma123", '', '', '', '', 3000)
+    let admin3 = new User(3, 1, "x", "x", '', '', '', '', 3000)
+    let admin4 = new User(4, 1, "MariaMar", "papaymama", '', '', '', '', 3000)
+    let admin5 = new User(5, 1, "ValenIda", "Ida43", '', '', '', '', 3000)
+    let user1 = new User(6, 2, "MahiaJaz", "milocopitoluna", 'Mahia', 'Casaravilla', '4322-4354-4532-7313', 226, 3000)
+    let user2 = new User(7, 2, 'Pablito', 'elmejor123', 'Pablo', 'Casas', '5417-4321-7543-9625', 953, 3000)
+    let user3 = new User(8, 2, 'Alfredito', 'alfred34', 'Alfredo', 'Perez', '5432-8764-5435-2135', 548, 3000)
+    let user4 = new User(9, 2, 'Batman', 'fckJoker', 'Bruce', 'Wayne', '6809-1324-4352-7656', 437, 3000)
+    let user5 = new User(10, 2, 'ej', '123', 'Pepe', 'Ramirez', '4322-5434-4531-7658', 953, 3000)
     this.users.push(admin1, admin2, admin3, admin4, admin5, user1, user2, user3, user4, user5)
   }
 
@@ -62,26 +70,57 @@ class System {
   buyProd(id, amount, buyer) {
     let product;
     for (let i = 0; i < this.products.length; i++) {
-      if (this.products[i].id === parseInt(id)) {
+      if (this.products[i].id === Number(id)) {
         product = this.products[i];
         break;
       }
     }
-    if (product && product.state && product.stock >= amount) {
+    if (product.state) {
       product.stock -= amount;
-      buyer = this.userLogged.username;
+      buyer = this.userLogged;
       this.addBuy(product, amount);
       return true;
     }
+      
     return false;
   }
 
   addBuy(product, amount) {
     if (this.userLogged) {
       let totalCost = product.price * amount;
-      let newBuy = new Buys(this.buys.length + 1, this.userLogged.username, product.name, amount, "Pendiente", totalCost);
+      let newBuy = new Buys(this.buys.length + 1, this.userLogged.username, product, amount, "Pendiente", totalCost);
       this.buys.push(newBuy);
+      console.log(newBuy)
     }
+  }
+
+  acceptBuy(idBuys) {
+    
+
+
+    for (let i = 0; i < this.buys.length; i++) {
+      
+      if(this.buys[i].idBuys == idBuys) {
+
+        if(this.buys[i].buyer.balance >= this.buys[i].totalCost &&
+          this.buys[i].amount <= this.buys[i].product.stock) {
+  
+            this.buys[i].buyer.balance -= this.buys[i].totalCost;
+            this.buys[i].product.stock -= this.buys[i].amount;
+            this.buys[i].stateBuys = "Aceptada";
+            return true;
+            
+        }else {
+          this.buys[i].stateBuys = "Rechazada";
+          alert("NO SE PUDO COMPRAR")
+          return false;
+        }
+
+      }
+
+    }
+    return false;
+   
   }
 
   getBuys() {
@@ -95,9 +134,7 @@ class System {
         availableProds.push(p);
       }
     }
-
     return availableProds;
-
   }
 
 

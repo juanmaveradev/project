@@ -3,7 +3,6 @@ let system = new System();
 listProducts();
 listOfferProducts();
 listProductsTable();
-listBuysTable();
 showByClass("privateAdmin", "none")
 showByClass("privateUser", "none")
 hideToAdmin();
@@ -13,6 +12,8 @@ hideToUser();
 document.querySelector("#btnAddProd").addEventListener("click", addProduct);
 document.querySelector("#btnLogin").addEventListener("click", login);
 document.querySelector("#btnLogOut").addEventListener("click", logout);
+
+
 
 let buttons = document.querySelectorAll(".btnSection");
 for (let btn of buttons) {
@@ -31,7 +32,6 @@ function hideToAdmin() {
   document.querySelector(".sectionOffer").style.display = "none"
   document.querySelector(".sectionBuys").style.display = "none"
 }
-
 
 function showSection() {
   let classSec = this.getAttribute("data-secRef");
@@ -121,8 +121,6 @@ function addProduct() {
   listProductsTable();
 }
 
-
-
 function listProducts() {
   let containerProd = document.querySelector(".containerProducts");
   containerProd.innerHTML = "";
@@ -160,7 +158,6 @@ function listProducts() {
   }
   buyCounter();
 }
-
 
 function listOfferProducts() {
   let containerProd = document.querySelector(".containerOfferProducts");
@@ -217,8 +214,6 @@ function buyCounter() {
   let incrementButtons = document.querySelectorAll('.increment');
   let counters = document.querySelectorAll('.counter b');
 
-
-
   decrementButtons.forEach((button, i) => {
     button.onclick = () => {
       let counterProds = Number(counters[i].textContent);
@@ -237,7 +232,6 @@ function buyCounter() {
     };
   });
 }
-
 
 function buyProd(id, amount) {
   let seCompro = system.buyProd(id, amount);
@@ -261,7 +255,6 @@ function buyProd(id, amount) {
   listProductsTable();
   listBuysTable()
 }
-
 
 function listProductsTable() {
   let listProductsTableEdit = document.querySelector(
@@ -302,19 +295,21 @@ function listBuysTable() {
   containerHeaderBuysTable.innerHTML = "";
   listBuysTable.innerHTML = "";
 
-
   if (system.userLogged !== null) {
 
     if (system.userLogged.type === 1) {
-
+        
         for (let i = 0; i < system.buys.length; i++) {
-          listBuysTable.innerHTML += `
+
+          if(system.buys[i].stateBuys == "Pendiente"){
+            listBuysTable.innerHTML += `
             <tr>
-              <td>${system.buys[i].buyer}</td>
-              <td>${system.buys[i].product}</td>
+              <td>${system.buys[i].buyer.username}</td>
+              <td>${system.buys[i].product.name}</td>
               <td>${system.buys[i].amount}</td>
               <td>${system.buys[i].totalCost}</td>
               <td><b class="${system.buys[i].stateBuys}">${system.buys[i].stateBuys}</b></td>
+              <td><input type="button" value="Aceptar Compra" class="btnAcceptBuy" data-idBuy="${system.buys[i].idBuys}"></td>
             </tr>
           `;
           containerHeaderBuysTable.innerHTML = `
@@ -323,11 +318,13 @@ function listBuysTable() {
               <th>Producto</th>
               <th>Cantidad</th>
               <th>Monto Total</th>
-              <th>Estado</th>       
+              <th>Estado</th>   
+              <th></th>
+              <th></th>    
           </tr>
                   
           `
-        
+          } 
       }
      
     } else if (system.userLogged.type === 2) {
@@ -340,7 +337,7 @@ function listBuysTable() {
 
           listBuysTable.innerHTML += `
             <tr>
-              <td>${system.buys[i].product}</td>
+              <td>${system.buys[i].product.name}</td>
               <td>${system.buys[i].amount}</td>
               <td>${system.buys[i].totalCost}</td>
               <td><b class="${system.buys[i].stateBuys}">${system.buys[i].stateBuys}</b></td>
@@ -362,16 +359,41 @@ function listBuysTable() {
       }
 
       }
-
-      
-    
   }
 
- 
-
-
+  addEvent()
 }
 
+function addEvent() {
+  let listButtonsAccept = document.querySelectorAll(".btnAcceptBuy")
+
+  for (let i = 0; i < listButtonsAccept.length; i++){
+    listButtonsAccept[i].addEventListener("click", acceptBuy)
+  }
+}
+
+function acceptBuy(){
+   let idBuys = this.getAttribute("data-idBuy");
+
+    if(system.acceptBuy(idBuys) ) {
+      Swal.fire({
+        icon: 'success',
+        title: "Compra aceptada",
+        showConfirmButton: false,
+        timer: 1000 
+      });
+    }else {
+      Swal.fire({
+        icon: 'error',
+        title: "Compra rechazada",
+        showConfirmButton: false,
+        timer: 1000 
+      });
+    }
+
+
+  listBuysTable()
+}
 
 
 function changeProdState(i) {
@@ -405,11 +427,8 @@ function changeProdOffer(i) {
   listProductsTable();
   listOfferProducts();
 
-  console.log(system.products[i]);
+
 }
-
-
-
 
 function login() {
 
@@ -456,12 +475,6 @@ function login() {
   listOfferProducts();
   listBuysTable();
 }
-
-
-
-
-
-
 
 function logout() {
   showByClass("privateAdmin", "none");
