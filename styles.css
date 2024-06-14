@@ -346,7 +346,7 @@ main > div {
 
 .sectionProductsTableEdit > div {
 
-  height: 350px;
+  height: 550px;
   overflow-y: scroll;
 }
 
@@ -544,7 +544,7 @@ tr:nth-child(even) {
   height: 150px;
 }
 
-.sectionOffer > div > h2, .sectionProducts > div >h2, .sectionBuys > div > h2{
+.sectionOffer > div > h2, .sectionProducts > div >h2, .sectionBuys > div > h2, .sectionProductsTableEdit{
   text-align: center;
   font-size: 2.2rem;
   color: rgb(59, 2, 100);
@@ -614,4 +614,11 @@ tr:nth-child(even) {
   text-align: right;
   cursor: pointer;
   margin: 0 5px;
+}
+
+.titleBuysState {
+  color: indigo;
+  padding-left: 2rem;
+  font-size: 1.6rem;
+  margin-top: 3rem;
 }

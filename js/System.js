@@ -10,7 +10,7 @@ class System {
   }
 
   preloadBuys() {
-    let buy1 = new Buys(1, this.users[6], this.products[4], 2, "Aprobada", 542)
+    let buy1 = new Buys(1, this.users[6], this.products[4], 2, "Aceptada", 542)
     let buy2 = new Buys(2, this.users[8], this.products[6], 5, "Pendiente", 235)
     let buy3 = new Buys(3, this.users[7], this.products[2], 3, "Pendiente", 168)
     let buy4 = new Buys(4, this.users[6], this.products[1], 1, "Rechazada", 65)
@@ -19,16 +19,16 @@ class System {
   }
 
   preloadProducts() {
-    let cletoGloves14oz = new Product(1, "Guantes de boxeo - Cleto Reyes 14oz", "Guantes de boxeo con diseño anatómico: Los guantes de boxeo de alta resistencia CLETO REYES están hechos a mano en México con piel de vaca, diseñados anatómicamente para un ajuste perfecto.", "https://m.media-amazon.com/images/I/81K2UPztsdL._AC_SX679_.jpg", 257, 13, true, true);
-    let RDXGloves16oz = new Product(2, "Guantes de Boxeo 16oz - RDX ", "Piel ConvEX maya para guantes de boxeo de alta tecnología. Fabricados con borde de primera calidad para entrenamientos y combates. Diseño anatómico contorneado para una posición de la mano más natural y cómoda.", "https://m.media-amazon.com/images/I/81E4XxN3S1L._AC_SX679_.jpg", 30, 4, false, true);
-    let venumWraps = new Product(3, "Vendas 1,5M - Venum", "El acolchado de gel amortiguador de Shell difunde la fuerza recibida durante el entrenamiento o la competición en MMA, boxeo, Muay Thai y kickboxing, entre otros deportes, a través de la estructura de los guantes interiores de boxeo. ", "https://m.media-amazon.com/images/I/71pzS6gYhNL.__AC_SX300_SY300_QL70_FMwebp_.jpg", 12, 60, true, true);
-    let venumShinguards = new Product(4, "Tibiales Venum Challenger", "100% Piel sintética para una gran durabilidad y rendimiento | Espuma de alta densidad con acolchado adicional a lo largo de la espinilla y el empeine para una mayor absorción de impactos", "https://m.media-amazon.com/images/I/91fxHepdDWL._AC_SX679_.jpg", 76, 43, false, true)
-    let mmaDummie = new Product(5, "Muñeco de MMA - UM", " ¡Entrena como un profesional con UM Wrestling Dummies! Perfecto para dominar movimientos de Jiu-Jitsu brasileño, MMA, Judo, Karate, Boxeo y muchos más", "https://m.media-amazon.com/images/I/31dck+Wu7kL._AC_.jpg", 49, 43, true, true)
-    let venumShort = new Product(6, "Short Muay Thai - Venum", "Los pantalones cortos Venum Classic Muay Thai son imprescindibles para todos los practicantes de boxeo tailandés que buscan pantalones cortos de gran valor.", "https://m.media-amazon.com/images/I/41RvqZDqXeL._AC_.jpg", 37, 24, false, true)
-    let fairtexPads = new Product(7, "Pads - Fairtex", "La almohadilla curva de Muay Thai de Fairtex es la herramienta de entrenamiento perfecta para cualquiera que quiera mejorar sus habilidades de golpeo. Fabricada con materiales de primera calidad y diseñada con una forma curva", "https://m.media-amazon.com/images/I/31I3y-UHA4L._AC_.jpg", 101, 6, true, true)
-    let everlastBoxBag = new Product(8, "Bolsa de boxeo, Juofip", "Construcción sólida para resistencia: este saco de boxeo de 80 libras está construido con precisión para durar y equipa a los luchadores de manera integral, fomentando la habilidad y la mejora de la resistencia.", "https://m.media-amazon.com/images/I/41xlz8Rg8rL._AC_.jpg", 160, 54, false, true)
-    let RDXMouthGuard = new Product(9, "Bucal - RDX", "Los protectores bucales RDX para adultos están fabricados con un gel absorbente de impactos que proporciona una amortiguación entre las mandíbulas y protege los segmentos internos y externos de los dientes.", "https://m.media-amazon.com/images/I/71as1VnYY6L._AC_SX679_.jpg", 19, 65, true, true)
-    let doubleEndBag = new Product(10, "Cielo Tierra - Ringside", "La habilidad de lanzar un puñetazo y lanzar un contragolpe efectivo es una habilidad esencial que debe poseer un boxeador. La bolsa de doble extremo te ayudará a concentrarte en estas técnicas y a agudizar tus reflejos para convertirte en un boxeador más sólido desde el punto de vista fundamental.", "https://m.media-amazon.com/images/I/31pmbz9wkYL._AC_.jpg", 60, 72, false, true)
+    let cletoGloves14oz = new Product(1, "Guantes de boxeo - Cleto Reyes 14oz", "Guantes de boxeo con diseño anatómico: Los guantes de boxeo de alta resistencia CLETO REYES están hechos a mano en México con piel de vaca, diseñados anatómicamente para un ajuste perfecto.", "https://m.media-amazon.com/images/I/81K2UPztsdL._AC_SX679_.jpg", 257, 13, true, true, 0);
+    let RDXGloves16oz = new Product(2, "Guantes de Boxeo 16oz - RDX ", "Piel ConvEX maya para guantes de boxeo de alta tecnología. Fabricados con borde de primera calidad para entrenamientos y combates. Diseño anatómico contorneado para una posición de la mano más natural y cómoda.", "https://m.media-amazon.com/images/I/81E4XxN3S1L._AC_SX679_.jpg", 30, 4, false, true, 0);
+    let venumWraps = new Product(3, "Vendas 1,5M - Venum", "El acolchado de gel amortiguador de Shell difunde la fuerza recibida durante el entrenamiento o la competición en MMA, boxeo, Muay Thai y kickboxing, entre otros deportes, a través de la estructura de los guantes interiores de boxeo. ", "https://m.media-amazon.com/images/I/71pzS6gYhNL.__AC_SX300_SY300_QL70_FMwebp_.jpg", 12, 60, true, true, 0);
+    let venumShinguards = new Product(4, "Tibiales Venum Challenger", "100% Piel sintética para una gran durabilidad y rendimiento | Espuma de alta densidad con acolchado adicional a lo largo de la espinilla y el empeine para una mayor absorción de impactos", "https://m.media-amazon.com/images/I/91fxHepdDWL._AC_SX679_.jpg", 76, 43, false, true, 0)
+    let mmaDummie = new Product(5, "Muñeco de MMA - UM", " ¡Entrena como un profesional con UM Wrestling Dummies! Perfecto para dominar movimientos de Jiu-Jitsu brasileño, MMA, Judo, Karate, Boxeo y muchos más", "https://m.media-amazon.com/images/I/31dck+Wu7kL._AC_.jpg", 49, 43, true, true, 0)
+    let venumShort = new Product(6, "Short Muay Thai - Venum", "Los pantalones cortos Venum Classic Muay Thai son imprescindibles para todos los practicantes de boxeo tailandés que buscan pantalones cortos de gran valor.", "https://m.media-amazon.com/images/I/41RvqZDqXeL._AC_.jpg", 37, 24, false, true, 0)
+    let fairtexPads = new Product(7, "Pads - Fairtex", "La almohadilla curva de Muay Thai de Fairtex es la herramienta de entrenamiento perfecta para cualquiera que quiera mejorar sus habilidades de golpeo. Fabricada con materiales de primera calidad y diseñada con una forma curva", "https://m.media-amazon.com/images/I/31I3y-UHA4L._AC_.jpg", 101, 6, true, true, 0)
+    let everlastBoxBag = new Product(8, "Bolsa de boxeo, Juofip", "Construcción sólida para resistencia: este saco de boxeo de 80 libras está construido con precisión para durar y equipa a los luchadores de manera integral, fomentando la habilidad y la mejora de la resistencia.", "https://m.media-amazon.com/images/I/41xlz8Rg8rL._AC_.jpg", 160, 54, false, true, 0)
+    let RDXMouthGuard = new Product(9, "Bucal - RDX", "Los protectores bucales RDX para adultos están fabricados con un gel absorbente de impactos que proporciona una amortiguación entre las mandíbulas y protege los segmentos internos y externos de los dientes.", "https://m.media-amazon.com/images/I/71as1VnYY6L._AC_SX679_.jpg", 19, 65, true, true, 0)
+    let doubleEndBag = new Product(10, "Cielo Tierra - Ringside", "La habilidad de lanzar un puñetazo y lanzar un contragolpe efectivo es una habilidad esencial que debe poseer un boxeador. La bolsa de doble extremo te ayudará a concentrarte en estas técnicas y a agudizar tus reflejos para convertirte en un boxeador más sólido desde el punto de vista fundamental.", "https://m.media-amazon.com/images/I/31pmbz9wkYL._AC_.jpg", 60, 72, false, true, 0)
     this.products.push(cletoGloves14oz, RDXGloves16oz, venumWraps, venumShinguards, mmaDummie, venumShort, fairtexPads, everlastBoxBag, RDXMouthGuard, doubleEndBag)
   }
 
@@ -65,8 +65,6 @@ class System {
     return userFinded;
   }
 
-
-
   buyProd(id, amount, buyer) {
     let product;
     for (let i = 0; i < this.products.length; i++) {
@@ -75,29 +73,28 @@ class System {
         break;
       }
     }
-    if (product.state) {
+    if (product && product.state) { 
       product.stock -= amount;
-      buyer = this.userLogged;
-      this.addBuy(product, amount);
+      buyer = this.userLogged; 
+      this.addBuy(product, amount, buyer); 
       return true;
     }
-      
     return false;
   }
 
-  addBuy(product, amount) {
+  addBuy(product, amount, buyer) { 
     if (this.userLogged) {
       let totalCost = product.price * amount;
-      let newBuy = new Buys(this.buys.length + 1, this.userLogged.username, product, amount, "Pendiente", totalCost);
+
+      let newBuy = new Buys(this.buys.length + 1, buyer, product, amount, "Pendiente", totalCost);
       this.buys.push(newBuy);
-      console.log(newBuy)
+      console.log(newBuy);
     }
   }
+  
 
   acceptBuy(idBuys) {
-    
-
-
+  
     for (let i = 0; i < this.buys.length; i++) {
       
       if(this.buys[i].idBuys == idBuys) {
@@ -107,12 +104,15 @@ class System {
   
             this.buys[i].buyer.balance -= this.buys[i].totalCost;
             this.buys[i].product.stock -= this.buys[i].amount;
+            this.buys[i].product.revenue += this.buys[i].totalCost
+            console.log(this.buys[i].product.revenue)
+
+
             this.buys[i].stateBuys = "Aceptada";
             return true;
             
         }else {
           this.buys[i].stateBuys = "Rechazada";
-          alert("NO SE PUDO COMPRAR")
           return false;
         }
 
@@ -126,6 +126,7 @@ class System {
   getBuys() {
     return this.buys;
   }
+
 
   availableProds() {
     let availableProds = [];

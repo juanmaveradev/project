@@ -1,5 +1,2 @@
-Guardar imagenes
-Cambiar stock
-Guardar compras
-Guardar ganancias
-LLAMAR A FUNCIONES DE REGISTRAR PARA PUSHEAR 
+-GENERAR REPORTE DE GANANCIA 
+-REGISTRO

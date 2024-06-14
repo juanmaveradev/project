@@ -1,5 +1,5 @@
 class Product {
-  constructor(id, name, description, imgUrl, price, stock, offer, state) {
+  constructor(id, name, description, imgUrl, price, stock, offer, state, revenue) {
     this.id = id;
     this.name = name;
     this.description = description;
@@ -8,6 +8,7 @@ class Product {
     this.stock = stock;
     this.offer = offer;
     this.state = state;
+    this.revenue = revenue;
   }
   
   offerState() {
@@ -28,7 +29,6 @@ class Product {
     } return ''
 
   }
-
 
   prodState() {
     if (this.state) {
