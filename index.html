@@ -55,7 +55,7 @@
     <main>
 
 
-      <section class="sectionRegister btnSection privateUser" style="margin: 2rem auto;">
+      <section class="sectionRegister" style="margin: 2rem auto;">
         <h2>REGISTRARSE</h2>
         <div id="containerRegister">
           <div>
@@ -63,17 +63,17 @@
             <input type="text" id="lastName" placeholder="Apellido" class="inputRegister" />
           </div>
           <div>
-            <input type="text" id="userName" placeholder="Usuario" class="inputRegister" />
+            <input type="text" id="username" placeholder="Usuario" class="inputRegister" />
             <input type="password" id="password" placeholder="Contraseña" class="inputRegister" />
           </div>
           <div id="containerCardInfo">
             <div id="containerCard">
-              <label for="card"><b>Tarjeta de Credito/Debito</b></label>
-              <input type="text" id="cardTxt" class="inputRegister" />
+              <label for="cardTxt"><b>Tarjeta de Credito/Debito</b></label>
+              <input type="text" id="cardTxt" class="inputRegister" placeholder='WWWW-XXXX-YYYY-ZZZZ'/>
             </div>
             <div id="containerCvc">
               <label for="cvc"><b>CVC</b></label>
-              <input type="number" id="cvcTxt" class="inputRegister" />
+              <input type="number" id="cvc" class="inputRegister" placeholder="XXX"/>
             </div>
           </div>
           <input type="submit" value="Registrarse" id="btnRegistro" class="inputBtnStyle">

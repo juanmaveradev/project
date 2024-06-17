@@ -16,43 +16,77 @@ document.querySelector("#btnLogOut").addEventListener("click", logout);
 document.querySelector(".btnConf").addEventListener("click", () => listBuysTable("Aceptada"));
 document.querySelector(".btnPend").addEventListener("click", () => listBuysTable("Pendiente"));
 document.querySelector(".btnDeny").addEventListener("click", () => listBuysTable("Rechazada"));
+document.querySelector("#btnShowRegister").addEventListener("click", showRegisterForm)
+document.querySelector("#btnRegistro").addEventListener("click", registerUser)
 
 
-let buttons = document.querySelectorAll(".btnSection");
-for (let btn of buttons) {
-  btn.addEventListener("click", showSection);
-}
+ let buttons = document.querySelectorAll(".btnSection");
+ for (let btn of buttons) {
+   btn.addEventListener("click", showSection);
+ }
+
+
+
 
 function hideToUser() {
-  document.querySelector(".sectionCreateProduct").style.display = "none"
-  document.querySelector(".sectionRegister").style.display = "none"
-  document.querySelector(".sectionProductsTableEdit").style.display = "none"
-  document.querySelector(".sectionGains").style.display = "none"
+   document.querySelector(".sectionCreateProduct").style.display = "none";
+   document.querySelector(".sectionProductsTableEdit").style.display = "none";
+  // document.querySelector(".sectionRegister").style.display = "none";
+   document.querySelector(".sectionGains").style.display = "none";
 }
 
 function hideToAdmin() {
-  document.querySelector(".sectionProducts").style.display = "none"
-  document.querySelector(".sectionOffer").style.display = "none"
-  document.querySelector(".sectionBuys").style.display = "none"
+   document.querySelector(".sectionProducts").style.display = "none";
+   document.querySelector(".sectionOffer").style.display = "none";
+   document.querySelector(".sectionBuys").style.display = "none";
 }
 
 function showSection() {
   let classSec = this.getAttribute("data-secRef");
 
+  console.log(`Showing section ${classSec}`);
+
   hideToAdmin();
   hideToUser();
 
   let sectionToShow = document.querySelector(`.${classSec}`);
-
   sectionToShow.style.display = "block";
 }
 
 function showByClass(sctClass, display) {
-  let sections = document.querySelectorAll(`.${sctClass}`)
+  let sections = document.querySelectorAll(`.${sctClass}`);
   for (let sect of sections) {
     sect.style.display = display;
   }
 }
+
+function showRegisterForm() {
+  let formRegister = document.querySelector(".sectionRegister");
+  let formLogin = document.querySelector(".sectionLogin");
+
+  formRegister.style.display = "block";
+  formLogin.style.display = "none";
+}
+
+function registerUser() {
+  let id = system.users.length + 1;
+  let type = 2;
+  let name = document.querySelector("#name").value;
+  let lastName = document.querySelector("#lastName").value;
+  let username = document.querySelector("#username").value;
+  let password = document.querySelector("#password").value;
+  let card = document.querySelector("#cardTxt").value;
+  let cvc = Number(document.querySelector("#cvc").value);
+  let balance = 3000;
+
+  console.log(id, type, name, lastName, username, password, card, cvc, balance)
+
+  system.registerUser(id, type, username, password, name, lastName,  card, cvc, balance)
+
+  console.log(system.users)
+
+}
+
 
 function addProduct() {
   let id = system.products.length + 1;
@@ -456,31 +490,26 @@ function listGains() {
       <p>Las ganancias de ${system.products[i].name} = ${system.products[i].revenue} </p> <br>
       
       
-      
-      `
-    
-  }
 
+      `
+  }
 }
 
 listGains()
 
 
-function showRegisterForm() {
 
-document.querySelector("#")
-
-
-}
 
 function login() {
+  console.log("Attempting login");
 
   let user = document.querySelector("#userNameLogin").value.toLowerCase();
   let password = document.querySelector("#passwordLogin").value;
 
-  let userExist = system.login(user, password)
+  let userExist = system.login(user, password);
 
   if (userExist && system.userLogged != null) {
+    console.log("Login successful");
     document.querySelector(".sectionLogin").style.display = "none";
     document.querySelector("#userNameLogin").value = "";
 
@@ -502,15 +531,13 @@ function login() {
     });
 
     if (system.userLogged.type === 1) {
-      showByClass("privateAdmin", "block")
+      showByClass("privateAdmin", "block");
       document.querySelector("#userName").innerHTML = system.userLogged.username;
     }
     if (system.userLogged.type === 2) {
-      showByClass("privateUser", "block")
+      showByClass("privateUser", "block");
       document.querySelector("#userName").innerHTML = system.userLogged.name;
     }
-
-
   }
   document.querySelector("#passwordLogin").value = "";
   listProducts();
@@ -520,12 +547,9 @@ function login() {
   listGains();
 }
 
+
 function logout() {
   showByClass("privateAdmin", "none");
   showByClass("privateUser", "none");
   showByClass("sectionLogin", "block");
-
-
-
 }
-

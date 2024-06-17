@@ -51,6 +51,12 @@ class System {
     this.products.push(newProduct)
   }
 
+  registerUser(id, type, username, password, name, lastName, card, cvc, balance) {
+    let newUser = new User(id, type, username, password, name, lastName, card, cvc, balance)
+    this.users.push(newUser)
+  }
+
+
   login(user, password) {
     let i = 0;
     let userFinded = false;
