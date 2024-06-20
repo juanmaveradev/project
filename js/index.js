@@ -3,7 +3,6 @@ let system = new System();
 listProducts();
 listOfferProducts();
 listProductsTable();
-listGains()
 showByClass("privateAdmin", "none")
 showByClass("privateUser", "none")
 hideToAdmin();
@@ -79,6 +78,11 @@ function registerUser() {
   let cvc = Number(document.querySelector("#cvc").value);
   let balance = 3000;
 
+
+
+
+
+  
   console.log(id, type, name, lastName, username, password, card, cvc, balance)
 
   system.registerUser(id, type, username, password, name, lastName,  card, cvc, balance)
@@ -144,7 +148,8 @@ function addProduct() {
       price,
       stock,
       offer,
-      state
+      state,
+
 
     );
     Swal.fire({
@@ -156,6 +161,7 @@ function addProduct() {
 
   listProducts();
   listProductsTable();
+  listGains()
 }
 
 function listProducts() {
@@ -447,6 +453,7 @@ function acceptBuy() {
 listBuysTable("Pendiente");
 
 function changeProdState(i) {
+
   system.products[i].state = !system.products[i].state;
 
   let btnState = document.querySelectorAll(".btnState")[i];
@@ -482,20 +489,24 @@ function changeProdOffer(i) {
 
 
 function listGains() {
-  let gainsContainer = document.querySelector(".sectionGains");
-  gainsContainer.innerHTML = "<h2>Ganancias</h2>";
+  let gainsContainer = document.querySelector("#containerGains");
+  gainsContainer.innerHTML = ""
+
 
   for (let i = 0; i < system.products.length; i++) {
       gainsContainer.innerHTML += `
-      <p>Las ganancias de ${system.products[i].name} = ${system.products[i].revenue} </p> <br>
+
+      <tr>
+        <td>${system.products[i].name}</td>
+        <td>${system.products[i].revenue}</td>
+      </tr>
       
-      
+
 
       `
   }
 }
 
-listGains()
 
 
 

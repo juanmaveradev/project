@@ -627,3 +627,22 @@ tr:nth-child(even) {
   font-size: 1.6rem;
   margin-top: 3rem;
 }
+
+
+/* SECTION GAINS */
+
+.sectionGains {
+  width: 500px;
+  margin: 3rem auto;
+}
+
+.sectionGains > h2 {
+  margin: 3rem 0;
+  text-align: center;
+  font-size: 2.2rem;
+  color: indigo;
+}
+
+.sectionGains > table {
+  border-collapse: collapse;
+}

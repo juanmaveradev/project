@@ -144,7 +144,36 @@ class System {
     return availableProds;
   }
 
+  validationCard(card) {
+    if (card.length == 19 &&
+    !isNaN(card.substring(0, 4)) &&
+    card.charAt(4) == "-" &&
+    !isNaN(card.substring(5, 9)) &&
+    card.charAt(9) == "-" &&
+    !isNaN(card.substring(10, 14)) &&
+    card.charAt(14) == "-" &&
+    !isNaN(card.substring(15, 19))) {
+      return true;
+    }
+    return false;
+  }
 
-
+  luhnAlgorithm(numCard) {
+    let add = 0;
+    let alter = false;
+    for (let i = numCard.length - 1; i >= 0; i--) {
+      let number = Number(numCard.charAt(i), 10);
+      if (alter) {
+        number *= 2;
+        if (number > 9) {
+          number -= 9;
+        }
+      }
+      add += number;
+      alter = !alter
+    }
+    return add % 10 === 0;
+  }
+  
 }
 
