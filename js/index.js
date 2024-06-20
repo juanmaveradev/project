@@ -412,6 +412,7 @@ function acceptBuy() {
 }
 listBuysTable("Pendiente");
 
+
 function changeProdState(i) {
   system.products[i].state = !system.products[i].state;
 
