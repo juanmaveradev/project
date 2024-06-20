@@ -132,7 +132,7 @@ textarea {
 
 }
 
-#sectionRegister, .sectionLogin {
+.sectionRegister, .sectionLogin {
   width: 500px;
   margin: 15rem auto;
   background-color: rgb(255, 255, 255);
@@ -141,7 +141,12 @@ textarea {
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
 }
 
-
+.sectionRegister > h2{
+  text-align: center;
+  color: indigo;
+  font-size: 1.8rem;
+  letter-spacing: 3px;
+}
 
 #containerRegister > div {
   width: 100%;
@@ -621,4 +626,23 @@ tr:nth-child(even) {
   padding-left: 2rem;
   font-size: 1.6rem;
   margin-top: 3rem;
+}
+
+
+/* SECTION GAINS */
+
+.sectionGains {
+  width: 500px;
+  margin: 3rem auto;
+}
+
+.sectionGains > h2 {
+  margin: 3rem 0;
+  text-align: center;
+  font-size: 2.2rem;
+  color: indigo;
+}
+
+.sectionGains > table {
+  border-collapse: collapse;
 }

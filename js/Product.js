@@ -8,7 +8,7 @@ class Product {
     this.stock = stock;
     this.offer = offer;
     this.state = state;
-    this.revenue = revenue;
+    this.revenue = 0;
   }
   
   offerState() {

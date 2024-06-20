@@ -51,6 +51,12 @@ class System {
     this.products.push(newProduct)
   }
 
+  registerUser(id, type, username, password, name, lastName, card, cvc, balance) {
+    let newUser = new User(id, type, username, password, name, lastName, card, cvc, balance)
+    this.users.push(newUser)
+  }
+
+
   login(user, password) {
     let i = 0;
     let userFinded = false;
@@ -138,7 +144,36 @@ class System {
     return availableProds;
   }
 
+  validationCard(card) {
+    if (card.length == 19 &&
+    !isNaN(card.substring(0, 4)) &&
+    card.charAt(4) == "-" &&
+    !isNaN(card.substring(5, 9)) &&
+    card.charAt(9) == "-" &&
+    !isNaN(card.substring(10, 14)) &&
+    card.charAt(14) == "-" &&
+    !isNaN(card.substring(15, 19))) {
+      return true;
+    }
+    return false;
+  }
 
-
+  luhnAlgorithm(numCard) {
+    let add = 0;
+    let alter = false;
+    for (let i = numCard.length - 1; i >= 0; i--) {
+      let number = Number(numCard.charAt(i), 10);
+      if (alter) {
+        number *= 2;
+        if (number > 9) {
+          number -= 9;
+        }
+      }
+      add += number;
+      alter = !alter
+    }
+    return add % 10 === 0;
+  }
+  
 }
 
